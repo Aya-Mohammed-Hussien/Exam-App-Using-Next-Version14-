@@ -2,26 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+  
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@layer components {
+   .nav-link {
+    @apply p-4 flex items-center gap-3 font-geist font-normal text-base
+   }
+   .nav-active {
+    @apply bg-blue-100 border-blue-500 border-2 text-blue-600
+   }
+
+}
+@font-face{
+    font-family: "Geist Mono";
+    src: url("/assets/fonts/GeistMono-Regular.ttf") format('truetype')
 }
