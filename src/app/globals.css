@@ -15,7 +15,14 @@
    }
 
 }
+
+/* Geist Font */
 @font-face{
     font-family: "Geist Mono";
     src: url("/assets/fonts/GeistMono-Regular.ttf") format('truetype')
+}
+/* Inter Font */
+@font-face{
+    font-family: "Inter", sans-serif;;
+    src: url("/assets/fonts/Inter_18pt-SemiBold.ttf") format('truetype')
 }

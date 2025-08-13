@@ -58,6 +58,7 @@ const config: Config = {
   		} ,
 		fontFamily : {
 			geist :['"Geist Mono"', 'monospace'],
+			inter :['"Inter"', 'sans-serif']
 		}
   	}
   },
