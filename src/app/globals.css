@@ -13,6 +13,12 @@
    .nav-active {
     @apply bg-blue-100 border-blue-500 border-2 text-blue-600
    }
+   .auth-hero{
+    @apply font-geist font-semibold text-xl tracking-normal align-middle text-blue-600 leading-[100%]
+   }
+   .auth-hero-description {
+    @apply font-geist text-base font-normal tracking-normal align-middle leading-[100%] text-gray-700
+   }
 
 }
 
@@ -25,4 +31,9 @@
 @font-face{
     font-family: "Inter", sans-serif;;
     src: url("/assets/fonts/Inter_18pt-SemiBold.ttf") format('truetype')
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
 }
