@@ -3,7 +3,7 @@ import ExamAppName from "./exam-app-name";
 
 export default function AuthHeader() {
   return (
-    <header className="relative overflow-hidden px-28 py-32 flex flex-col justify-center items-start">
+    <section className="relative overflow-hidden px-28 py-32 flex flex-col justify-center items-start">
      
      {/* First Circle */}
       <div className="absolute top-14 -right-10 w-96 h-96 bg-blue-300 rounded-full opacity-75 blur-3xl z-0"></div>
@@ -12,7 +12,7 @@ export default function AuthHeader() {
       <div className="absolute -bottom-10 left-10 w-96 h-96 bg-blue-300 rounded-full opacity-75 blur-3xl z-0"></div>
       
       <ExamAppName />
-      <section className="flex flex-col justify-center items-start gap-16 relative z-10 h-[47rem]">
+      <div className="flex flex-col justify-center items-start gap-16 relative z-10 h-[47rem]">
         <h2 className="font-inter font-bold text-3xl align-middle text-gray-800">
           Empower your learning journey with our smart exam platform.
         </h2>
@@ -64,7 +64,7 @@ export default function AuthHeader() {
             </div>
           </li>
         </ul>
-      </section>
-    </header>
+      </div>
+    </section>
   );
 }

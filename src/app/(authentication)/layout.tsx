@@ -1,17 +1,11 @@
 import AuthHeader from "@/components/shared/auth-header";
 
-export default function AuthLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="en">
-      <body className="flex flex-row">
-        <div className="flex flex-1">
+export default function AuthLayout({children,}: Readonly<{ children: React.ReactNode }>) {return (
+      <div className="flex flex-row">
+        <aside className="flex flex-1">
           <AuthHeader />
-        </div>
-
+        </aside>
         <main className="flex flex-1 justify-center">{children}</main>
-      </body>
-    </html>
+      </div>
   );
 }
