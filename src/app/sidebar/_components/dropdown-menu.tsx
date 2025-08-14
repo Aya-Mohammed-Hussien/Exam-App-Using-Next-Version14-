@@ -13,11 +13,12 @@ import Link from "next/link";
 export default function DropDownMenu() {
   return (
     <DropdownMenu>
+
+      {/* Dropdown icon */}
       <DropdownMenuTrigger>
-        <button>
           <EllipsisVertical size={18} strokeWidth={1.25} color="#6b7280" />
-        </button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent align="end" side="top" sideOffset={20}>
         <DropdownMenuSeparator />
 

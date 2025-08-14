@@ -19,6 +19,19 @@
    .auth-hero-description {
     @apply font-geist text-base font-normal tracking-normal align-middle leading-[100%] text-gray-700
    }
+   .auth-hero-heading {
+    @apply border-2 border-blue-600 w-9 h-9 items-center justify-center flex shrink-0
+   }
+   .auth-heading{
+    @apply font-inter font-bold text-3xl leading-[100%] align-middle text-gray-800
+   }
+   .form-label {
+    @apply font-geist font-medium text-base align-middle leading-[100%] text-gray-800
+   }
+   .form-input {
+    @apply font-geist font-normal text-sm align-middle leading-[100%] text-gray-400 border-2 px-3 py-4 border-borderGray
+     focus:border-blue-600 focus:outline-none
+   }
 
 }
 

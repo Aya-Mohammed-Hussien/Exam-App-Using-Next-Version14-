@@ -5,9 +5,12 @@ export default function AuthLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="flex flex-row justify-center items-center">
-        <AuthHeader />
-        {children}
+      <body className="flex flex-row">
+        <div className="flex flex-1">
+          <AuthHeader />
+        </div>
+
+        <main className="flex flex-1 justify-center">{children}</main>
       </body>
     </html>
   );

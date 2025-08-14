@@ -3,13 +3,13 @@ import ExamAppName from "./exam-app-name";
 
 export default function AuthHeader() {
   return (
-    <header className="relative overflow-hidden p-28 flex flex-col justify-center items-start gap-[8.5rem]">
+    <header className="relative overflow-hidden px-28 py-32 flex flex-col justify-center items-start">
      
      {/* First Circle */}
-      <div className="absolute top-14 -right-10 w-96 h-96 bg-blue-200 rounded-full opacity-75 blur-3xl z-0"></div>
+      <div className="absolute top-14 -right-10 w-96 h-96 bg-blue-300 rounded-full opacity-75 blur-3xl z-0"></div>
     
      {/* Second Circle */}
-      <div className="absolute -bottom-10 left-10 w-96 h-96 bg-blue-200 rounded-full opacity-75 blur-3xl z-0"></div>
+      <div className="absolute -bottom-10 left-10 w-96 h-96 bg-blue-300 rounded-full opacity-75 blur-3xl z-0"></div>
       
       <ExamAppName />
       <section className="flex flex-col justify-center items-start gap-16 relative z-10 h-[47rem]">
@@ -20,7 +20,7 @@ export default function AuthHeader() {
 
           <li className="flex gap-5 ">
             {/* Icon 1  */}
-            <div className="border-2 border-blue-600 w-9 h-9 items-center justify-center flex">
+            <div className="auth-hero-heading">
               <Brain size={24} color="#2563eb"/>
             </div>
 
@@ -36,7 +36,7 @@ export default function AuthHeader() {
 
           <li className="flex gap-5 ">
             {/* Icon 2  */}
-            <div className="border-2 border-blue-600 w-9 h-9 items-center justify-center flex">
+            <div className="auth-hero-heading">
               <BookOpenCheck size={24} color="#2563eb" />
             </div>
 
@@ -51,7 +51,7 @@ export default function AuthHeader() {
 
           <li className="flex gap-5 ">
             {/* Icon 3  */}
-            <div className="border-2 border-blue-600 w-9 h-9 items-center justify-center flex">
+            <div className="auth-hero-heading">
               <RectangleEllipsis size={24} color="#2563eb"/>
             </div>
 

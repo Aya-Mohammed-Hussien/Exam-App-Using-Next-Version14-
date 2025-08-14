@@ -18,6 +18,7 @@ export default function Sidebar() {
           width={192}
           height={37}
           className= "brightness-[0.3]"
+          priority
         />
 
         {/* App Name */}

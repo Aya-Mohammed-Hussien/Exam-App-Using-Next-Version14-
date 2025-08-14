@@ -1,8 +1,10 @@
+import RegisterForm from "./_components/register-form";
 
 export default function Page() {
   return (
-    <main>
-       <h2>register</h2>
-    </main>
+    <section className="py-36 px-32">
+       <h2 className="auth-heading pb-6">Create Account</h2>
+       <RegisterForm/>
+    </section>
   )
 }
