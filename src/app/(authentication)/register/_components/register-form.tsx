@@ -1,9 +1,7 @@
 "use client";
 
-import Email from "@/components/shared/email";
-import FirstName from "@/components/shared/first-name";
-import LastName from "@/components/shared/last-name";
-import Username from "@/components/shared/username";
+import PasswordField from "@/components/shared/password-filed";
+import UserDataField from "@/components/shared/user-data-field";
 import { CardContent } from "@/components/ui/card";
 
 export default function RegisterForm() {
@@ -12,17 +10,26 @@ export default function RegisterForm() {
       <CardContent className="flex flex-col gap-4 p-0">
         <div className="flex gap-3">
           {/* First Name */}
-          <FirstName />
+          <UserDataField id="first-name" placeholder="Ahmed" type="text" label="First name"/>
+
 
           {/* Last Name */}
-          <LastName />
+          <UserDataField id="last-name" placeholder="Abdullah" type="text" label="Last name"/>
+
         </div>
 
         {/* Username */}
-        <Username />
+        <UserDataField id="username" placeholder="user123" type="text" label="Username"/>
+
 
         {/* email */}
-        <Email />
+        <UserDataField id="email" placeholder="user@example.com" type="email" label="Email"/>
+
+        {/* Password */}
+        <PasswordField id="password" label="Password"/>
+
+        {/* Confirm Password */}
+        <PasswordField id="confirmPassword" label="Confirm Password"/>
       </CardContent>
     </form>
   );
