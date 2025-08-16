@@ -1,6 +1,7 @@
 "use client";
 
 import PasswordField from "@/components/shared/password-filed";
+import { PhoneInput } from "@/components/shared/phone-input";
 import UserDataField from "@/components/shared/user-data-field";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -45,6 +46,9 @@ export default function RegisterForm() {
             label="Email"
           />
 
+          {/* Phone */}
+            <PhoneInput label="Phone" id="phone" type="tel" />
+          
           {/* Password */}
           <PasswordField id="password" label="Password" />
 
@@ -56,12 +60,18 @@ export default function RegisterForm() {
           {/* Register Button */}
           <Button
             type="submit"
-            className="w-full bg-blue-600 font-geist text-sm font-medium align-middle text-white">
-           Create Account
+            className="w-full bg-blue-600 font-geist text-sm font-medium align-middle text-white"
+          >
+            Create Account
           </Button>
           {/* Already Having Account */}
-          <Link href="/register" className="text-blue-600 text-sm tracking-normal font-geist font-medium align-middle leading-[100%]"><span className="text-gray-500">Already have an account? </span> Login</Link>
-
+          <Link
+            href="/login"
+            className="text-blue-600 text-sm tracking-normal font-geist font-medium align-middle leading-[100%]"
+          >
+            <span className="text-gray-500">Already have an account? </span>{" "}
+            Login
+          </Link>
         </CardFooter>
       </form>
     </Card>
