@@ -3,13 +3,15 @@ import AccountSidebar from "./account-sidebar/acoount-sidebar";
 import { ChevronLeft, UserRound } from "lucide-react";
 
 export default function AccountSettingsLayout({
-  children,}: Readonly<{ children: React.ReactNode }>) {
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="bg-gray-50">
       <section className="p-6 flex gap-3">
         <Link
           href="/"
-          className="flex justify-center items-center border-blue-600 border-2">
+          className="flex justify-center items-center border-blue-600 border-2"
+        >
           <ChevronLeft color="#2563eb" size={24} />
         </Link>
         <header className="bg-blue-600 text-white p-4 flex items-center gap-4 flex-1">
@@ -20,9 +22,9 @@ export default function AccountSettingsLayout({
         </header>
       </section>
 
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen gap-6">
         <AccountSidebar />
-        {children}
+        <div className="flex-1 p-6 bg-white mb-6 mr-6"> {children} </div>
       </div>
     </div>
   );

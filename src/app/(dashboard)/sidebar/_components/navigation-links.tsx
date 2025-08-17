@@ -19,7 +19,7 @@ const pathname = usePathname();
           </span>
         </Link>
         {/* Account-Settings */}
-        <Link href={accountSettings} className={`nav-link ${pathname ===accountSettings  ?"nav-active":"text-gray-500"}`}>
+        <Link href={paths.accountSettings.root} className={`nav-link ${pathname.startsWith(paths.accountSettings.root)?"nav-active":"text-gray-500"}`}>
           <UserRound size={24} strokeWidth={1.2} /> 
           <span className="text-base font-normal">
             Account Settings

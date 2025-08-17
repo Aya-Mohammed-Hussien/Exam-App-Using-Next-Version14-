@@ -1,8 +1,9 @@
+import ProfileForm from "./_components/profile-form";
 
 export default function Page() {
   return (
-      <div>
-        hi
-      </div>
-  );
+    <div> 
+      <ProfileForm/>
+    </div>
+  )
 }

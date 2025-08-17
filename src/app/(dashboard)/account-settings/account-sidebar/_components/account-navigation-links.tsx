@@ -13,7 +13,7 @@ const pathname = usePathname();
   return (
       <nav className="flex flex-col gap-3">
         {/* Profile */}
-        <Link href={paths.accountSettings.profile} className={`account-nav-link ${pathname === paths.accountSettings.profile ? "account-nav-active":"text-gray-500"}`}>
+        <Link href={paths.accountSettings.root} className={`account-nav-link ${pathname === paths.accountSettings.root ? "account-nav-active":"text-gray-500"}`}>
            
           <CircleUserRound size={24} strokeWidth={1.2}/>
           <span className="text-base font-normal">
