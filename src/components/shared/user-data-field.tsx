@@ -15,7 +15,7 @@ export default function UserDataField({id  , label , placeholder , type} : Passw
       <Label htmlFor={id} className="form-label">
         {label}
       </Label>
-      <Input id={id} className="form-input w-full" placeholder={placeholder} type={type}/>
+      <Input id={id} className="form-input w-full mt-2" placeholder={placeholder} type={type}/>
     </div>
   );
 }
