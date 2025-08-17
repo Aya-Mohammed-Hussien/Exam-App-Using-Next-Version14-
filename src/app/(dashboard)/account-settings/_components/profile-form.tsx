@@ -10,7 +10,7 @@ export default function ProfileForm() {
     <Card className="border-none shadow-none">
       <form>
         <CardContent className="flex flex-col gap-4 p-0 mb-11">
-          <div className="flex gap-3">
+          <div className="flex flex-row gap-3">
             {/* First Name */}
             <UserDataField
               id="first-name"
@@ -45,11 +45,11 @@ export default function ProfileForm() {
           />
 
           {/* Phone */}
-            <PhoneInput label="Phone" id="phone" type="tel" />      
+          <PhoneInput label="Phone" id="phone" type="tel" />
         </CardContent>
 
         <CardFooter className="flex gap-4 p-0">
-         {/* Save Changes Button */}
+          {/* Save Changes Button */}
           <Button
             type="submit"
             className="w-full bg-red-50 font-geist text-sm font-medium align-middle text-red-600"
