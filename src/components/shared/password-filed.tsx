@@ -21,7 +21,7 @@ export default function PasswordField({id  , label } : PasswordField) {
         {label}
       </Label>
       <div className="relative mt-2">
-      <Input id={id} className="form-input" placeholder="********" type="password"/>
+      <Input id={id} className="form-input" placeholder="********" type="password" name="password"/>
       <Button type="button" onClick={togglePasswordVisiblity} variant="ghost" className="absolute right-0 top-0">
         {showPassword ?<Eye size={18} color="#9ca3af"/>  :<EyeOff size={18} color="#9ca3af"/>}
       </Button>

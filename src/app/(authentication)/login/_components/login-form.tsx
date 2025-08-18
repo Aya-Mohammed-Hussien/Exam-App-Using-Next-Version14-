@@ -20,13 +20,13 @@ export default function LoginForm() {
     const response = await signIn("credentials", {
       email: data.email,
       password: data.password,
-      callbackUrl: new URLSearchParams(location.search).get("callbackUrl") || "/",
+      redirect:false
     });
     if(response?.error){
      setError(response.error);
      return;
     }
-  };
+   location.href= new URLSearchParams(location.search).get("callbackUrl") || "/";}
 
   return (
     <Card className="border-none shadow-none w-[28.25rem]">
@@ -38,6 +38,7 @@ export default function LoginForm() {
             placeholder="user@example.com"
             type="email"
             label=" Email"
+            name="email"
           />
 
           {/* Password */}
