@@ -2,11 +2,13 @@ import Image from "next/image";
 import NavigationLinks from "./_components/navigation-links";
 import DropDownMenu from "./_components/dropdown-menu";
 import ExamAppName from "@/components/shared/exam-app-name";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/auth";
 
 
 
-export default function Sidebar() {
- 
+export default async function Sidebar() {
+ const session = await getServerSession(authOptions)
   return (
     /* Sidebar */
     <aside className="flex flex-col bg-blue-50 w-[22.625rem] p-10 gap-[3.75rem] min-h-screen fixed top-0 left-0">
@@ -42,8 +44,8 @@ export default function Sidebar() {
 
         {/* Username & Email */}
         <div className="flex flex-col">
-          <span className="font-geist text-base font-medium align-middle text-blue-600">Firstname</span>
-          <span className="font-geist text-sm font-normal align-middle text-gray-500">user-email@example.com</span>
+          <span className="font-geist text-base font-medium align-middle text-blue-600">{session?.user.firstName}</span>
+          <span className="font-geist text-sm font-normal align-middle text-gray-500">{session?.user?.email}</span>
         </div>
         
         {/* DropDown Menu */}
