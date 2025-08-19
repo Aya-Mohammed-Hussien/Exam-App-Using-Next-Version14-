@@ -33,6 +33,7 @@ type PhoneInputProps = Omit<
     id: string;
     label: string;
     type: "tel";
+    
   };
 
 const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
@@ -51,6 +52,7 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
             international={false}
             defaultCountry="EG"
             placeholder="1012345678"
+            
             value={value || undefined}
             
             /**
@@ -110,8 +112,7 @@ const CountrySelect = ({
       <PopoverTrigger asChild>
         <Button
           type="button"
-          variant="outline"
-          className="form-input bg-transparent border-r-0"
+          className="bg-transparent border-r-0"
           disabled={disabled}
         >
           <FlagComponent
@@ -130,6 +131,8 @@ const CountrySelect = ({
           />
         </Button>
       </PopoverTrigger>
+
+      
       <PopoverContent
         className="w-[300px] p-0 bg-white"
         side="bottom"
