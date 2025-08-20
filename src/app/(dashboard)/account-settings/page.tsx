@@ -1,9 +1,12 @@
+import { getServerSession } from "next-auth";
 import ProfileForm from "./_components/profile-form";
+import { authOptions } from "@/auth";
 
-export default function Page() {
+export default async function Page() {
+  const session =await getServerSession(authOptions);
   return (
     <div> 
-      <ProfileForm/>
+      <ProfileForm user={session}/>
     </div>
   )
 }

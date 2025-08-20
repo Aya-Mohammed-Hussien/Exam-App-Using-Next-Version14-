@@ -11,3 +11,5 @@ export interface LoginResponse {
     isVerified: boolean;
   };
 }
+
+export type User = LoginResponse["user"]

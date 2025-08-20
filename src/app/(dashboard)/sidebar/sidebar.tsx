@@ -44,7 +44,7 @@ export default async function Sidebar() {
 
         {/* Username & Email */}
         <div className="flex flex-col">
-          <span className="font-geist text-base font-medium align-middle text-blue-600">{session?.user.firstName}</span>
+          <span className="font-geist text-base font-medium align-middle text-blue-600">{session?.firstName}</span>
           <span className="font-geist text-sm font-normal align-middle text-gray-500">{session?.user?.email}</span>
         </div>
         
