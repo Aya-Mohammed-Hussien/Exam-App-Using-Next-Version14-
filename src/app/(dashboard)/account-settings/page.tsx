@@ -3,10 +3,10 @@ import ProfileForm from "./_components/profile-form";
 import { authOptions } from "@/auth";
 
 export default async function Page() {
-  const session =await getServerSession(authOptions);
+  const session = await getServerSession(authOptions)
   return (
     <div> 
-      <ProfileForm user={session}/>
+      <ProfileForm userData={session}/>
     </div>
   )
 }
