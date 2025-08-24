@@ -4,7 +4,7 @@
 import { CircleUserRound, Lock} from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import {paths} from "../../../../../lib/constants/app-paths"
+import {paths} from "../../../../../lib/constants/app-paths.constant"
 
 export default function AccountSettingsNavigationLinks() {
 
