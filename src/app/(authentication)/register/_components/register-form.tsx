@@ -50,10 +50,10 @@ export default function RegisterForm() {
             <PhoneInput label="Phone" id="phone" type="tel" />
           
           {/* Password */}
-          <PasswordField id="password" label="Password" />
+          <PasswordField id="password"  />
 
           {/* Confirm Password */}
-          <PasswordField id="confirmPassword" label="Confirm Password" />
+          <PasswordField id="confirmPassword" />
         </CardContent>
 
         <CardFooter className="flex flex-col gap-9 p-0">

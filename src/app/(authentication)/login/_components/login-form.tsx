@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { loginSchema, LoginValues } from "@/lib/schemes/auth.schema";
+import { loginSchema, LoginValues } from "@/lib/schemas/auth.schema";
 import useLogin from "../_hooks/use-login";
 import {
   Form,

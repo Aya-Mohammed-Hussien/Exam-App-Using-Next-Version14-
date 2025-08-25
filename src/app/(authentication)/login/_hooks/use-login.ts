@@ -1,4 +1,4 @@
-import { LoginValues } from "@/lib/schemes/auth.schema";
+import { LoginValues } from "@/lib/schemas/auth.schema";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "next-auth/react";
 

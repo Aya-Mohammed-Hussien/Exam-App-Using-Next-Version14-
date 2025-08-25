@@ -40,12 +40,12 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
     ({ className, onChange, value, id, label, ...props }, ref) => {
       return (
         <div className="flex flex-col gap-2">
-          <Label htmlFor={id} className="form-label">
+          <Label htmlFor={id} >
             {label}
           </Label>
           <RPNInput.default
             ref={ref}
-            className={cn("flex", className)}
+            className={cn("flex items-center border h-11", className)}
             flagComponent={FlagComponent}
             countrySelectComponent={CountrySelect}
             inputComponent={InputComponent}
@@ -76,7 +76,7 @@ const InputComponent = React.forwardRef<
   HTMLInputElement,
   React.ComponentProps<"input">
 >(({ className, ...props }, ref) => (
-  <Input className={cn("form-input", className)} {...props} ref={ref} />
+  <Input className={cn("border-none  p-0 h-fit my-auto", className)} {...props} ref={ref} />
 ));
 InputComponent.displayName = "InputComponent";
 
@@ -111,7 +111,7 @@ const CountrySelect = ({
       <PopoverTrigger asChild>
         <Button
           type="button"
-          className="bg-transparent border-r-0"
+          className="bg-transparent"
           disabled={disabled}
         >
           <FlagComponent
@@ -225,8 +225,3 @@ const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
 
 export { PhoneInput };
 
-
-  //  <span className="text-sm font-geist font-medium leading-5 text-gray-950">
-  //           {(selectedCountry ?? "EG").toUpperCase()} (+
-  //           {RPNInput.getCountryCallingCode(selectedCountry ?? "EG")})
-  //         </span>
