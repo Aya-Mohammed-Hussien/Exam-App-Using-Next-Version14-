@@ -1,7 +1,6 @@
 "use client";
 
 import PasswordField from "@/components/shared/password-filed";
-import UserDataField from "@/components/shared/user-data-field";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Link from "next/link";
@@ -17,8 +16,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {zodResolver} from "@hookform/resolvers/zod"
-import { LoaderCircle } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CircleX, LoaderCircle } from "lucide-react";
 
 export default function LoginForm() {
   //From
@@ -27,10 +26,9 @@ export default function LoginForm() {
       email: "",
       password: "",
     },
-    resolver:zodResolver(loginSchema),
+    resolver: zodResolver(loginSchema),
   });
-const{isValid , isSubmitted}=form.formState
-
+  const { isValid, isSubmitted } = form.formState;
 
   //Mutations
   const { isPending, error, login } = useLogin();
@@ -42,21 +40,26 @@ const{isValid , isSubmitted}=form.formState
 
   return (
     <Form {...form}>
-      <Card className="border-none shadow-none w-[28.25rem]">
+      <Card className="w-[28.25rem] border-none shadow-none">
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <CardContent className="flex flex-col gap-4 p-0 mb-11">
+          <CardContent className="mb-11 flex flex-col gap-4 p-0">
             {/* Email */}
             <FormField
               name="email"
               control={form.control}
-              render={({ field }) => (
+              render={({ field , fieldState}) => (
                 <FormItem>
                   {/* Label */}
                   <FormLabel>Email</FormLabel>
 
                   {/* Field */}
                   <FormControl>
-                    <Input placeholder="user@example.com" {...field} />
+                    <Input
+                      placeholder="user@example.com"
+                      {...field}
+                      type="email"
+                      error={!!fieldState.error || !!error}
+                    />
                   </FormControl>
 
                   {/* Feedback */}
@@ -69,14 +72,14 @@ const{isValid , isSubmitted}=form.formState
             <FormField
               name="password"
               control={form.control}
-              render={({ field }) => (
+              render={({ field ,fieldState }) => (
                 <FormItem>
                   {/* Label */}
                   <FormLabel>Password</FormLabel>
 
                   {/* Field */}
                   <FormControl>
-                    <Input placeholder="********" {...field} />
+                    <PasswordField {...field} error={!!fieldState.error || !!error}/>
                   </FormControl>
 
                   {/* Feedback */}
@@ -89,30 +92,45 @@ const{isValid , isSubmitted}=form.formState
             <div className="flex items-center">
               <Link
                 href="/forget-password"
-                className="ml-auto inline-block text-blue-600 font-geist text-sm font-medium align-middle"
+                className="ml-auto inline-block align-middle font-geist text-sm font-medium text-blue-600"
               >
                 Forgot your password?
               </Link>
             </div>
           </CardContent>
 
-           {/* Error */}
-           {error && <p>{error.message}</p>}
+          {/* Error */}
+          {error && (
+            <div className="relative mb-9 flex w-full items-center justify-center border-[0.0625rem] border-red-600 bg-red-50 py-3">
+              <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 bg-white text-red-600">
+                <CircleX size={18} />
+              </div>
+              <p className="text-center font-geist text-sm font-normal text-red-600">
+                {error.message}
+              </p>
+            </div>
+          )}
 
           <CardFooter className="flex flex-col gap-9 p-0">
             {/* Login Button */}
             <Button
-            disabled={isPending || (!isValid && isSubmitted)}
+              disabled={isPending || (!isValid && isSubmitted)}
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-600 font-geist text-sm font-medium align-middle text-white"
+              className="w-full bg-blue-600 align-middle font-geist text-sm font-medium text-white hover:bg-blue-600"
             >
-              {isPending ? <div className="animate-spin"><LoaderCircle /></div> : "Login"}
+              {isPending ? (
+                <div className="animate-spin">
+                  <LoaderCircle />
+                </div>
+              ) : (
+                "Login"
+              )}
             </Button>
 
             {/* Create Account */}
             <Link
               href="/register"
-              className="text-blue-600 text-sm tracking-normal font-geist font-medium align-middle leading-[100%]"
+              className="align-middle font-geist text-sm font-medium leading-[100%] tracking-normal text-blue-600"
             >
               <span className="text-gray-500">Don’t have an account?</span>{" "}
               Create yours
@@ -121,50 +139,5 @@ const{isValid , isSubmitted}=form.formState
         </form>
       </Card>
     </Form>
-
-    // <Card className="border-none shadow-none w-[28.25rem]">
-    //   <form onSubmit={handleSubmit}>
-    //     <CardContent className="flex flex-col gap-4 p-0 mb-11">
-    //       {/* email */}
-    //       <UserDataField
-    //         id="email"
-    //         placeholder="user@example.com"
-    //         type="email"
-    //         label=" Email"
-    //         name="email"
-    //       />
-
-    //       {/* Password */}
-    //       <PasswordField id="password" label="Password" />
-    //       <div className="flex items-center">
-    //         <Link
-    //           href="/forget-password"
-    //           className="ml-auto inline-block text-blue-600 font-geist text-sm font-medium align-middle"
-    //         >
-    //           Forgot your password?
-    //         </Link>
-    //       </div>
-    //     </CardContent>
-
-    //     <CardFooter className="flex flex-col gap-9 p-0">
-    //       {/* Login Button */}
-    //       <Button
-    //         type="submit"
-    //         className="w-full bg-blue-600 hover:bg-blue-600 font-geist text-sm font-medium align-middle text-white"
-    //       >
-    //         Login
-    //       </Button>
-
-    //       {/* Create Account */}
-    //       <Link
-    //         href="/register"
-    //         className="text-blue-600 text-sm tracking-normal font-geist font-medium align-middle leading-[100%]"
-    //       >
-    //         <span className="text-gray-500">Don’t have an account?</span> Create
-    //         yours
-    //       </Link>
-    //     </CardFooter>
-    //   </form>
-    // </Card>
   );
 }

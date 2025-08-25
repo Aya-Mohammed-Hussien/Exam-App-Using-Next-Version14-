@@ -3,57 +3,68 @@
 @tailwind utilities;
 
 
-  
+
 
 
 @layer components {
-   .nav-link {
-    @apply p-4 flex items-center gap-3 font-geist font-normal text-base
-   }
-   .nav-active {
-    @apply bg-blue-100 border-blue-500 border-2 text-blue-600
-   }
-   .account-nav-link {
-    @apply py-2 px-4 flex items-center gap-3 font-geist font-normal text-base
-   }
-   .account-nav-active {
-    @apply bg-blue-50  text-blue-600
-   }
+  .nav-link {
+    @apply p-4 flex items-center gap-3 font-normal text-base font-geist
+  }
 
-   .auth-hero{
+  .nav-active {
+    @apply bg-blue-100 border-blue-500 border-2 text-blue-600
+  }
+
+  .account-nav-link {
+    @apply py-2 px-4 flex items-center gap-3 font-geist font-normal text-base
+  }
+
+  .account-nav-active {
+    @apply bg-blue-50 text-blue-600
+  }
+
+  .auth-hero {
     @apply font-geist font-semibold text-xl tracking-normal align-middle text-blue-600 leading-[100%]
-   }
-   .auth-hero-description {
+  }
+
+  .auth-hero-description {
     @apply font-geist text-base font-normal tracking-normal align-middle leading-[100%] text-gray-700
-   }
-   .auth-hero-heading {
+  }
+
+  .auth-hero-heading {
     @apply border-2 border-blue-600 w-9 h-9 items-center justify-center flex shrink-0
-   }
-   .auth-heading{
-    @apply font-inter font-bold text-3xl leading-[100%] align-middle text-gray-800
-   }
-   .form-label {
+  }
+
+  .auth-heading {
+    @apply text-3xl leading-[100%] font-inter font-bold align-middle text-gray-800
+  }
+
+  /* .form-label {
     @apply font-geist font-medium text-base align-middle leading-[100%] text-gray-800
-   }
-   .form-input {
+   } */
+  /* .form-input {
     @apply font-geist font-normal text-sm align-middle leading-[100%] px-3 py-4 border-borderGray
      focus:border-blue-600 focus:outline-none text-gray-400 focus:text-black placeholder:text-gray-400
-   }
+   } */
 
 }
 
 /* Geist Font */
-@font-face{
-    font-family: "Geist Mono";
-    src: url("/assets/fonts/GeistMono-Regular.ttf") format('truetype')
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono-Regular.ttf") format('truetype')
 }
+
 /* Inter Font */
-@font-face{
-    font-family: "Inter", sans-serif;;
-    src: url("/assets/fonts/Inter_18pt-SemiBold.ttf") format('truetype')
+@font-face {
+  font-family: "Inter", sans-serif;
+  ;
+  src: url("/assets/fonts/Inter_18pt-SemiBold.ttf") format('truetype')
 }
-html, body {
+
+html,
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }

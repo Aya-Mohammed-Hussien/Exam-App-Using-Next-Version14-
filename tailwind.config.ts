@@ -10,7 +10,6 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
-			borderGray: "rgba(229, 231, 235, 1)",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -31,7 +30,7 @@ const config: Config = {
   			},
   			muted: {
   				DEFAULT: 'hsl(var(--muted))',
-  				// foreground: 'hsl(var(--muted-foreground))'
+  				foreground: 'hsl(var(--muted-foreground))'
   			},
   			accent: {
   				DEFAULT: 'hsl(var(--accent))',
