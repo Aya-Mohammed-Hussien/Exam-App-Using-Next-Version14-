@@ -1,9 +1,9 @@
 "use server";
 
-import { registerValues } from "@/lib/schemas/auth.schema";
+import { RegisterValues } from "@/lib/schemas/auth.schema";
 import { LoginResponse } from "@/lib/types/auth";
 
-export async function registerAction(data: registerValues) {
+export async function registerAction(data: RegisterValues) {
   try {
     const response = await fetch(
       `${process.env.API_BASE_URL}/api/v1/auth/signup`,
