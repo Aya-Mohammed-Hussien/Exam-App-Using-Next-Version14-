@@ -39,7 +39,7 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
   React.forwardRef<React.ElementRef<typeof RPNInput.default>, PhoneInputProps>(
     ({ className, onChange, value, id, label, ...props }, ref) => {
       return (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col">
           <Label htmlFor={id} >
             {label}
           </Label>

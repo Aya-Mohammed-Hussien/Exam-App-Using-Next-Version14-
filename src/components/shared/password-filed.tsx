@@ -1,19 +1,22 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 
 type PasswordFieldProps = React.ComponentProps<typeof Input> ;
 
-export default function PasswordField(props: PasswordFieldProps) {
-  const [showPassword, setShowPassword] = useState(false);
+const PasswordField = React.forwardRef<HTMLInputElement , PasswordFieldProps>(
+  ({ className, ...props }, ref) => {
+const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisiblity = () => setShowPassword(!showPassword);
 
   return (
     <div className="relative mt-2">
       <Input
+      ref={ref}
         {...props}
+        className={className}
         type={showPassword ? "text" : "password"}
         placeholder={props.placeholder ?? "********"}
       />
@@ -30,6 +33,10 @@ export default function PasswordField(props: PasswordFieldProps) {
         )}
       </Button>
     </div>
-  );
-}
+  ); 
+})
+
+PasswordField.displayName = "PasswordField";
+
+export default PasswordField;
 
