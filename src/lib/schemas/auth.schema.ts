@@ -45,3 +45,14 @@ export const registerSchema = z
     path: ["rePassword"],
   });
 export type RegisterValues = z.infer<typeof registerSchema>;
+
+// Change-password schema
+export const changePasswordSchema = z.object({
+  oldPassword: z.string().min(1, "Password is required"),
+  password: passwordSchema.shape.password,
+  rePassword: z.string(),
+}).refine((data)=> data.password === data.rePassword , {
+  message : "Passwords do not match",
+  path : ["rePassword"]
+})
+export type ChangePasswordValues = z.infer<typeof changePasswordSchema>

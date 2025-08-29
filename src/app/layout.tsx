@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "@/components/providers/global";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Exam App",
@@ -14,11 +15,12 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>{children}</Providers>
+        <Toaster/>
       </body>
     </html>
   );
 }
 
 
-// Email Aya15@gmail.com
-// Password Aya@@2210
+// Email aya1812@gmail.com
+// Password    / Aya123@@@@

@@ -13,3 +13,7 @@ export interface LoginResponse {
 }
 
 export type User = LoginResponse["user"]
+
+export interface ChangePasswordResponse {
+  token : string
+}
