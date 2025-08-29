@@ -18,7 +18,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { CircleX, LoaderCircle } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
+import FormErrorMessage from "@/components/features/error message/form-error-message";
 
 export default function RegisterForm() {
   //Form
@@ -208,16 +209,7 @@ export default function RegisterForm() {
           </CardContent>
 
           {/* Error */}
-          {error && (
-            <div className="relative mb-9 flex w-full items-center justify-center border-[0.0625rem] border-red-600 bg-red-50 py-3">
-              <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 bg-white text-red-600">
-                <CircleX size={18} />
-              </div>
-              <p className="text-center font-geist text-sm font-normal text-red-600">
-                {error.message}
-              </p>
-            </div>
-          )}
+          <FormErrorMessage error={error} />
 
           <CardFooter className="flex flex-col gap-9 p-0">
             {/* Register Button */}

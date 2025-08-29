@@ -7,7 +7,7 @@ export default function useChangePassword() {
     mutationFn: async (values: ChangePasswordValues) => {
       console.log(values);
       const response = await ChangePasswordAction(values);
-      console.log(response);
+      return response;
     },
   });
   return { isPending, error, changePassword: mutate };

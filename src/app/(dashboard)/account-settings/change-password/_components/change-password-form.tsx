@@ -18,9 +18,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { CircleX, LoaderCircle } from "lucide-react";
-
+import { LoaderCircle } from "lucide-react";
+import FormErrorMessage from "@/components/features/error message/form-error-message";
+import { useToast } from "@/hooks/use-toast";
+import { ChangePasswordResponse } from "@/lib/types/auth";
 export default function ChangePasswordForm() {
+  const { toast } = useToast();
   //Form
   const form = useForm<ChangePasswordValues>({
     defaultValues: {
@@ -37,7 +40,16 @@ export default function ChangePasswordForm() {
 
   //Function
   const onSubmit: SubmitHandler<ChangePasswordValues> = async (values) => {
-   changePassword(values);
+    changePassword(values, {
+      onSuccess: (data: SuccessResponse<ChangePasswordResponse>) => {
+        if (data.message === "success") {
+          toast({
+            description: "Your message has been sent.",
+          });
+          form.reset()
+        }
+      },
+    });
   };
 
   return (
@@ -112,16 +124,7 @@ export default function ChangePasswordForm() {
           </CardContent>
 
           {/* Error */}
-          {error && (
-            <div className="relative mb-9 flex w-full items-center justify-center border-[0.0625rem] border-red-600 bg-red-50 py-3">
-              <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 bg-white text-red-600">
-                <CircleX size={18} />
-              </div>
-              <p className="text-center font-geist text-sm font-normal text-red-600">
-                {error.message}
-              </p>
-            </div>
-          )}
+          <FormErrorMessage error={error} />
 
           <CardFooter className="flex flex-col p-0">
             {/* Update Button */}
