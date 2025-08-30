@@ -18,7 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {LoaderCircle } from "lucide-react";
-import FormErrorMessage from "@/components/features/error message/form-error-message";
+import FormErrorMessage from "@/components/shared/form-error-message";
 
 export default function LoginForm() {
   //From

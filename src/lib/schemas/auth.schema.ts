@@ -56,3 +56,11 @@ export const changePasswordSchema = z.object({
   path : ["rePassword"]
 })
 export type ChangePasswordValues = z.infer<typeof changePasswordSchema>
+
+
+// Profile-Data Schema
+export const profileDataSchema = registerSchema.omit({
+  password: true ,
+  rePassword : true,
+})
+export type ProfileDataValues = z.infer<typeof profileDataSchema>

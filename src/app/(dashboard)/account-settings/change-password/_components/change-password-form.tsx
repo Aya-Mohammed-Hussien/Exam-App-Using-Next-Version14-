@@ -19,9 +19,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { LoaderCircle } from "lucide-react";
-import FormErrorMessage from "@/components/features/error message/form-error-message";
+import FormErrorMessage from "@/components/shared/form-error-message";
 import { useToast } from "@/hooks/use-toast";
 import { ChangePasswordResponse } from "@/lib/types/auth";
+
 export default function ChangePasswordForm() {
   const { toast } = useToast();
   //Form
