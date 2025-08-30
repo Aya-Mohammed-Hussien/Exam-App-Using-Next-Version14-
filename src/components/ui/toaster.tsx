@@ -9,6 +9,7 @@ import {
   ToastTitle,
   ToastViewport,
 } from "@/components/ui/toast"
+import { Check } from "lucide-react"
 
 export function Toaster() {
   const { toasts } = useToast()
@@ -17,11 +18,12 @@ export function Toaster() {
     <ToastProvider>
       {toasts.map(function ({ id, title, description, action, ...props }) {
         return (
-          <Toast key={id} {...props}>
-            <div className="grid gap-1">
+          <Toast key={id} {...props} className="bg-gray-800 p-4">
+            <div className="flex gap-3">
+              <Check size={18} color="#00BC7D"/>
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (
-                <ToastDescription>{description}</ToastDescription>
+                <ToastDescription className="text-white">{description}</ToastDescription>
               )}
             </div>
             {action}

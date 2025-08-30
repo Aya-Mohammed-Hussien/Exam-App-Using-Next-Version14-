@@ -44,7 +44,8 @@ export default function ChangePasswordForm() {
       onSuccess: (data: SuccessResponse<ChangePasswordResponse>) => {
         if (data.message === "success") {
           toast({
-            description: "Your message has been sent.",
+            description: "Your password has been updated.",
+            duration: 1500 ,
           });
           form.reset()
         }
@@ -144,6 +145,7 @@ export default function ChangePasswordForm() {
           </CardFooter>
         </form>
       </Card>
+      
     </Form>
   );
 }
