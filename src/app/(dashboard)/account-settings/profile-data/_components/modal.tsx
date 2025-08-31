@@ -1,5 +1,7 @@
+"use client";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -8,9 +10,23 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { TriangleAlert } from "lucide-react";
+import { LoaderCircle, TriangleAlert } from "lucide-react";
+import UseDeleteAccount from "../_hooks/use-delete";
+import { signOut } from "next-auth/react";
 
 export default function DeleteModal() {
+  // Mutations
+  const { isPending, error, deleteAccount } = UseDeleteAccount();
+
+  // Function
+  const deleteUser = async () => {
+    try {
+      await deleteAccount(); 
+      signOut({ callbackUrl: "/login" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -35,20 +51,38 @@ export default function DeleteModal() {
             This action is permanent and cannot be undone.
           </span>
         </DialogHeader>
+        {/* Footer */}
         <DialogFooter>
+          {/* Cancel Button */}
+          <DialogClose asChild>
+            <Button
+              type="button"
+              className="w-full bg-gray-200 font-geist text-sm font-medium text-gray-800"
+            >
+              Cancel
+            </Button>
+          </DialogClose>
+
+          {/* Delete Button */}
           <Button
-            type="button"
-            className="w-full bg-gray-200 font-geist text-sm font-medium text-gray-800"
-          >
-            Cancel
-          </Button>
-          <Button
+            disabled={isPending}
+            onClick={deleteUser}
             type="submit"
             className="w-full bg-red-600 font-geist text-sm font-medium text-white"
           >
-            Yes, delete
+            {isPending ? (
+              <LoaderCircle className="animate-spin" />
+            ) : (
+              "Yes, delete"
+            )}
           </Button>
         </DialogFooter>
+        {/* error */}{" "}
+        {error && (
+          <p className="mx-auto mb-2 w-[90%] bg-red-100 text-center text-sm text-red-600">
+            {error.message}
+          </p>
+        )}
       </DialogContent>
     </Dialog>
   );

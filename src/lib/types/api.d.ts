@@ -8,3 +8,6 @@ declare type SuccessResponse<T> =  {
 }& T
 
  type ApiResponse<T> = SuccessResponse<T> | ErrorResponse
+
+
+
