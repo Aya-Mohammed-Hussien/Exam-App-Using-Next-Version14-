@@ -4,14 +4,13 @@ import { PhoneInput } from "@/components/shared/phone-input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Session } from "next-auth";
 import {
   profileDataSchema,
   ProfileDataValues,
 } from "@/lib/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import UseUpdateData from "../_hooks/use-updateData";
-import { ProfileDataResponse } from "@/lib/types/auth";
+import { ProfileDataResponse, User } from "@/lib/types/auth";
 import { useToast } from "@/hooks/use-toast";
 import {
   Form,
@@ -24,21 +23,22 @@ import {
 import { Input } from "@/components/ui/input";
 import FormErrorMessage from "@/components/shared/form-error-message";
 import { LoaderCircle } from "lucide-react";
+import DeleteModal from "./modal";
 
-// type ProfileFormProps = {
-//   userData: Session;
-// };
+type ProfileFormProps = {
+  userData: User;
+};
 
-export default function ProfileForm() {
+export default function ProfileForm({ userData }: ProfileFormProps) {
   const { toast } = useToast();
   // Form
   const form = useForm<ProfileDataValues>({
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      username: "",
-      email: "",
-      phone: "",
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      username: userData.username,
+      email: userData.email,
+      phone: userData.phone,
     },
     resolver: zodResolver(profileDataSchema),
   });
@@ -72,7 +72,7 @@ export default function ProfileForm() {
                 name="firstName"
                 control={form.control}
                 render={({ field, fieldState }) => (
-                  <FormItem>
+                  <FormItem className="w-full">
                     {/* Label */}
                     <FormLabel>First name</FormLabel>
                     <FormControl>
@@ -95,7 +95,7 @@ export default function ProfileForm() {
                 name="lastName"
                 control={form.control}
                 render={({ field, fieldState }) => (
-                  <FormItem>
+                  <FormItem className="w-full">
                     {/* Label */}
                     <FormLabel>Last name</FormLabel>
                     <FormControl>
@@ -185,14 +185,11 @@ export default function ProfileForm() {
 
           {/* Error */}
           <FormErrorMessage error={error} />
+
+          {/* Footer */}
           <CardFooter className="flex gap-4 p-0">
             {/* Delete Account Button */}
-            <Button
-              type="submit"
-              className="w-full bg-red-50 align-middle font-geist text-sm font-medium text-red-600"
-            >
-              Delete My Account
-            </Button>
+            <DeleteModal />
 
             {/* Save Changes Button */}
             <Button
@@ -214,30 +211,3 @@ export default function ProfileForm() {
     </Form>
   );
 }
-
-// const { register, handleSubmit, getValues, reset } = useForm({
-//   defaultValues: {
-//     firstName: "",
-//     lastName: "",
-//     username: "",
-//     email: "",
-//     phone: "",
-//   },
-// });
-// console.log("Default values:", getValues());
-
-// useEffect(() => {
-//   if (userData) {
-//     reset({
-//       firstName: userData.firstName,
-//       lastName: userData.lastName,
-//       username: userData.username,
-//       email: userData.email,
-//       phone: userData.phone,
-//     });
-//   }
-// }, [userData, reset]);
-
-// const onSubmit = (data: any) => {
-//   console.log("Form data:", data);
-// };

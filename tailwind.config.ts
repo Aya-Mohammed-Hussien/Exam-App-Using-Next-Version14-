@@ -59,7 +59,10 @@ const config: Config = {
 		fontFamily : {
 			geist :['"Geist Mono"', 'monospace'],
 			inter :['"Inter"', 'sans-serif']
-		}
+		},
+		backdropBlur: {
+                'xs': '0.1rem',
+            },
   	}
   },
   plugins: [require("tailwindcss-animate")],

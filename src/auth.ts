@@ -29,11 +29,10 @@ export const authOptions: NextAuthOptions = {
           }
         );
         const payload: ApiResponse<LoginResponse> = await response.json();
-        console.log("signin success" , payload)
+        // console.log("signin success" , payload)
         if ("code" in payload) {
           throw new Error(payload.message);
         }
-        console.log("error" , payload.message)
         return {
           id: payload.user._id,
           ...payload.user,
@@ -43,12 +42,13 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    jwt: ({ token, user }) => {
+    jwt: ({ token, user}) => {
       if (user) {
         token = {
           ...user,
         };
       }
+    
       return token;
     },
     session: ({ session, token }) => {

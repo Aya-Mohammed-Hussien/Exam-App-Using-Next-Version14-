@@ -40,12 +40,10 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
     ({ className, onChange, value, id, label, ...props }, ref) => {
       return (
         <div className="flex flex-col">
-          <Label htmlFor={id} >
-            {label}
-          </Label>
+          <Label htmlFor={id}>{label}</Label>
           <RPNInput.default
             ref={ref}
-            className={cn("flex items-center border h-11", className)}
+            className={cn("flex h-11 items-center border", className)}
             flagComponent={FlagComponent}
             countrySelectComponent={CountrySelect}
             inputComponent={InputComponent}
@@ -63,12 +61,12 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
              *
              * @param {E164Number | undefined} value - The entered value
              */
-            onChange={(value) => onChange?.(value || ("" as RPNInput.Value))}
+         onChange={(value) => onChange?.(value || ("" as RPNInput.Value))}
             {...props}
           />
         </div>
       );
-    }
+    },
   );
 PhoneInput.displayName = "PhoneInput";
 
@@ -76,7 +74,11 @@ const InputComponent = React.forwardRef<
   HTMLInputElement,
   React.ComponentProps<"input">
 >(({ className, ...props }, ref) => (
-  <Input className={cn("border-none  p-0 h-fit my-auto", className)} {...props} ref={ref} />
+  <Input
+    className={cn("my-auto h-fit border-none p-0", className)}
+    {...props}
+    ref={ref}
+  />
 ));
 InputComponent.displayName = "InputComponent";
 
@@ -98,7 +100,7 @@ const CountrySelect = ({
   const scrollAreaRef = React.useRef<HTMLDivElement>(null);
   const [searchValue, setSearchValue] = React.useState("");
   const [isOpen, setIsOpen] = React.useState(false);
-
+  const countryCode = selectedCountry || "EG";
   return (
     <Popover
       open={isOpen}
@@ -109,30 +111,26 @@ const CountrySelect = ({
       }}
     >
       <PopoverTrigger asChild>
-        <Button
-          type="button"
-          className="bg-transparent"
-          disabled={disabled}
-        >
+        <Button type="button" className="bg-transparent" disabled={disabled}>
           <FlagComponent
-            country={selectedCountry}
-            countryName={selectedCountry}
+            country={countryCode}
+            countryName={countryCode}
           />
-          <span className="text-sm font-geist font-medium leading-5 text-gray-950">
-            {selectedCountry.toUpperCase()}(+
-            {RPNInput.getCountryCallingCode(selectedCountry)})
+          <span className="font-geist text-sm font-medium leading-5 text-gray-950">
+            {countryCode.toUpperCase()}(+
+            {RPNInput.getCountryCallingCode(countryCode)})
           </span>
           <ChevronsUpDown
             className={cn(
               "size-4 opacity-50",
-              disabled ? "hidden" : "opacity-100"
+              disabled ? "hidden" : "opacity-100",
             )}
           />
         </Button>
       </PopoverTrigger>
 
       <PopoverContent
-        className="w-[300px] p-0 bg-white"
+        className="w-[300px] bg-white p-0"
         side="bottom"
         align="start"
       >
@@ -144,7 +142,7 @@ const CountrySelect = ({
               setTimeout(() => {
                 if (scrollAreaRef.current) {
                   const viewportElement = scrollAreaRef.current.querySelector(
-                    "[data-radix-scroll-area-viewport]"
+                    "[data-radix-scroll-area-viewport]",
                   );
                   if (viewportElement) {
                     viewportElement.scrollTop = 0;
@@ -168,7 +166,7 @@ const CountrySelect = ({
                       onChange={onChange}
                       onSelectComplete={() => setIsOpen(false)}
                     />
-                  ) : null
+                  ) : null,
                 )}
               </CommandGroup>
             </ScrollArea>
@@ -224,4 +222,3 @@ const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
 };
 
 export { PhoneInput };
-
