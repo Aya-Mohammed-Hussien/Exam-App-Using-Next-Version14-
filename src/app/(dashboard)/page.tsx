@@ -1,4 +1,5 @@
 import { GraduationCap } from "lucide-react";
+import DiplomasList from "./diplomas/_components/DiplomasList";
 
 export default function Page() {
   return (       
@@ -7,6 +8,7 @@ export default function Page() {
             <GraduationCap size={45} strokeWidth={1.2} />
             <h1 className="font-semibold text-3xl align-middle font-inter">Diplomas</h1>
           </header>
+          <DiplomasList/>
         </section>
   );
 }
