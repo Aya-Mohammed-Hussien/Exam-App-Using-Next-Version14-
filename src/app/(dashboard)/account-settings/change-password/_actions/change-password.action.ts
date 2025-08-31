@@ -2,13 +2,10 @@
 
 import { ChangePasswordValues } from "@/lib/schemas/auth.schema";
 import { ChangePasswordResponse } from "@/lib/types/auth";
-import { getToken } from "@/lib/utils/get-token.util";
+import { requireAccessToken } from "@/lib/utils/get-access-token.util";
 
 export async function ChangePasswordAction(data: ChangePasswordValues) {
-  const jwt = await getToken();
-  if (!jwt?.accessToken) throw new Error("Unauthenticated user");
-  const token = jwt.accessToken;
-  console.log("req token", token);
+  const token = await requireAccessToken();
   try {
     const response = await fetch(
       `${process.env.API_BASE_URL}/api/v1/auth/changePassword`,

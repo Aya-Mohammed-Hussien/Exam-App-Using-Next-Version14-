@@ -16,7 +16,7 @@ export const authOptions: NextAuthOptions = {
       },
       authorize: async (credentials) => {
         const response = await fetch(
-          `https://exam.elevateegy.com/api/v1/auth/signin`,
+          `${process.env.API_BASE_URL}/api/v1/auth/signin`,
           {
             method: "POST",
             body: JSON.stringify({

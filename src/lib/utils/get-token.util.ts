@@ -11,7 +11,6 @@ export async function getToken() {
     console.log("function to get token", jwt?.accessToken);
     return jwt;
   } catch (error) {
-    void error;
     console.log(error);
     return null;
   }
