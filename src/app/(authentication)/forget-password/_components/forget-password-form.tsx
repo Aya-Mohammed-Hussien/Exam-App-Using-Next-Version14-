@@ -1,40 +1,119 @@
-"use client"
+"use client";
 
-import UserDataField from "@/components/shared/user-data-field"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { MoveRight } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
+  forgetPasswordSchema,
+  ForgetPasswordValue,
+} from "@/lib/schemas/auth.schema";
+import { LoaderCircle, MoveRight } from "lucide-react";
+import Link from "next/link";
+import { SubmitHandler, useForm } from "react-hook-form";
+import useForgetPassword from "../_hooks/use-forgetPassword";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ForgetPasswordResponse } from "@/lib/types/auth";
+import FormErrorMessage from "@/components/shared/form-error-message";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function ForgetPasswordForm() {
-  return (
-     <Card className="border-none shadow-none w-[28.25rem]">
-        <form>
-          <CardContent className="p-0 mb-4">
+  const { toast } = useToast();
+  const router = useRouter();
 
+  //Form
+  const form = useForm<ForgetPasswordValue>({
+    defaultValues: {
+      email: "",
+    },
+    resolver: zodResolver(forgetPasswordSchema),
+  });
+  const { isValid, isSubmitted } = form.formState;
+
+  //Mutations
+  const { isPending, error, forgetPassword } = useForgetPassword();
+
+  //Function
+  const onSubmit: SubmitHandler<ForgetPasswordValue> = (values) => {
+    forgetPassword(values, {
+      onSuccess: (data: SuccessResponse<ForgetPasswordResponse>) => {
+        if (data.message === "success") {
+          toast({
+            description: data.info,
+            duration: 1500,
+          });
+
+          setTimeout(() => {
+            router.push("/forget-password/verify-OTP");
+          } , 1500);
+        }
+      },
+    });
+  };
+
+  return (
+    <Form {...form}>
+      <Card className="w-[28.25rem] border-none shadow-none">
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <CardContent className="mb-4 p-0">
             {/* email */}
-            <UserDataField
-              id="email"
-              placeholder="user@example.com"
-              type="email"
-              label=" Email"
+            <FormField
+              name="email"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <FormItem>
+                  {/* Label */}
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    {/* Field */}
+                    <Input
+                      type="email"
+                      {...field}
+                      placeholder="user@example.com"
+                      error={!!fieldState.error || !!error}
+                    />
+                  </FormControl>
+                  {/* Message */}
+                  <FormMessage />
+                </FormItem>
+              )}
             />
           </CardContent>
+
+          {/* Error */}
+          <FormErrorMessage error={error} />
 
           <CardFooter className="flex flex-col gap-9 p-0 pt-6">
             {/* Login Button */}
             <Button
+              disabled={isPending || (!isValid && isSubmitted)}
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-600 font-geist text-sm font-medium align-middle text-white"
+              className="w-full bg-blue-600 align-middle font-geist text-sm font-medium text-white hover:bg-blue-600"
             >
-             Continue
-             <MoveRight size={18} />
+              {isPending ? (
+                <div className="animate-spin">
+                  <LoaderCircle />
+                </div>
+              ) : (
+                <div className="flex items-center justify-center gap-3">
+                  Continue
+                  <MoveRight size={18} />
+                </div>
+              )}
             </Button>
 
             {/* Create Account */}
             <Link
               href="/register"
-              className="text-blue-600 text-sm tracking-normal font-geist font-medium align-middle leading-[100%]"
+              className="align-middle font-geist text-sm font-medium leading-[100%] tracking-normal text-blue-600"
             >
               <span className="text-gray-500">Don’t have an account?</span>{" "}
               Create yours
@@ -42,5 +121,6 @@ export default function ForgetPasswordForm() {
           </CardFooter>
         </form>
       </Card>
-  )
+    </Form>
+  );
 }

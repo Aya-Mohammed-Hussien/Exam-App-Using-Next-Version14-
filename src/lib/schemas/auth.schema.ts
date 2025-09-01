@@ -9,6 +9,13 @@ export const loginSchema = z.object({
 });
 export type LoginValues = z.infer<typeof loginSchema>;
 
+
+//ForgetPasswordSchema 1 
+export const forgetPasswordSchema = loginSchema.omit({
+  password: true ,
+})
+export type ForgetPasswordValue = z.infer<typeof forgetPasswordSchema>
+
 // Register Schema
 export const registerSchema = z
   .object({

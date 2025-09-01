@@ -5,7 +5,7 @@ import Image from "next/image";
 export default async function DiplomasList() {
   const data = await getDiplomas();
   return (
-    <div className="mt-6 grid grid-cols-3 gap-2">
+    <div className="mt-6 grid grid-cols-3 gap-2 ">
       {data?.map((diploma) => (
         <Card key={diploma._id} className="relative overflow-hidden rounded-none h-[28rem]">
           <Image

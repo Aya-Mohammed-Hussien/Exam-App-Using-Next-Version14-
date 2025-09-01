@@ -1,0 +1,15 @@
+import ArrowBack from "./_components/arrow-left";
+import VerifyForm from "./_components/verify-OTP-form";
+
+export default function Page() {
+  return (
+    <section className="w-[28.25rem] pt-72">
+      <ArrowBack />
+      <h2 className="auth-heading pb-3">Verify OTP</h2>
+      <p className="pb-10 align-middle font-geist text-base font-normal leading-[100%] tracking-normal text-gray-500">
+        Please enter the 6-digits code we have sent to: <span className="inline-block text-black">user@example.com.</span>
+      </p>
+      <VerifyForm/>
+    </section>
+  );
+}
