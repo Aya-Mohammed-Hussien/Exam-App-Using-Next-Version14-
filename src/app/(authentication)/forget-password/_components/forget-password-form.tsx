@@ -16,7 +16,6 @@ import {
   ForgetPasswordValue,
 } from "@/lib/schemas/auth.schema";
 import { LoaderCircle, MoveRight } from "lucide-react";
-import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useForgetPassword from "../_hooks/use-forgetPassword";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,6 +23,7 @@ import { ForgetPasswordResponse } from "@/lib/types/auth";
 import FormErrorMessage from "@/components/shared/form-error-message";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import CreateAccoutnLink from "@/components/shared/create-account-link";
 
 export default function ForgetPasswordForm() {
   const { toast } = useToast();
@@ -50,10 +50,11 @@ export default function ForgetPasswordForm() {
             description: data.info,
             duration: 1500,
           });
-
           setTimeout(() => {
-            router.push("/forget-password/verify-OTP");
-          } , 1500);
+            router.push(
+              `/forget-password/verify-OTP?email=${encodeURIComponent(values.email)}`,
+            );
+          }, 1500);
         }
       },
     });
@@ -92,7 +93,7 @@ export default function ForgetPasswordForm() {
           <FormErrorMessage error={error} />
 
           <CardFooter className="flex flex-col gap-9 p-0 pt-6">
-            {/* Login Button */}
+            {/* Continue Button */}
             <Button
               disabled={isPending || (!isValid && isSubmitted)}
               type="submit"
@@ -111,13 +112,7 @@ export default function ForgetPasswordForm() {
             </Button>
 
             {/* Create Account */}
-            <Link
-              href="/register"
-              className="align-middle font-geist text-sm font-medium leading-[100%] tracking-normal text-blue-600"
-            >
-              <span className="text-gray-500">Don’t have an account?</span>{" "}
-              Create yours
-            </Link>
+            <CreateAccoutnLink />
           </CardFooter>
         </form>
       </Card>

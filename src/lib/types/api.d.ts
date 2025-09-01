@@ -1,13 +1,15 @@
 declare interface ErrorResponse {
   message: string;
-  code:number;
+  code: number;
 }
 
-declare type SuccessResponse<T> =  {
+declare type SuccessResponse<T> = {
   message: string;
-}& T
+} & T;
 
- type ApiResponse<T> = SuccessResponse<T> | ErrorResponse
+declare interface VerifyCodeSuccessResponse {
+  status: string;
+}
 
-
-
+type ApiResponse<T> = SuccessResponse<T> | ErrorResponse;
+type VerifyCodeResponse = VerifyCodeSuccessResponse | ErrorResponse;

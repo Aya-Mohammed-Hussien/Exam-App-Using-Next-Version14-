@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {LoaderCircle } from "lucide-react";
 import FormErrorMessage from "@/components/shared/form-error-message";
+import CreateAccoutnLink from "@/components/shared/create-account-link";
 
 export default function LoginForm() {
   //From
@@ -120,13 +121,7 @@ export default function LoginForm() {
             </Button>
 
             {/* Create Account */}
-            <Link
-              href="/register"
-              className="align-middle font-geist text-sm font-medium leading-[100%] tracking-normal text-blue-600"
-            >
-              <span className="text-gray-500">Don’t have an account?</span>{" "}
-              Create yours
-            </Link>
+          <CreateAccoutnLink/>
           </CardFooter>
         </form>
       </Card>

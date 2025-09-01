@@ -10,11 +10,19 @@ export const loginSchema = z.object({
 export type LoginValues = z.infer<typeof loginSchema>;
 
 
-//ForgetPasswordSchema 1 
+//ForgetPasswordSchema  
 export const forgetPasswordSchema = loginSchema.omit({
   password: true ,
 })
 export type ForgetPasswordValue = z.infer<typeof forgetPasswordSchema>
+
+
+//Verify OTP
+export const verifyCodeSchema = z.object({
+  resetCode :z.string().length(6 , "OTP must be exactly 6 digits")
+})
+export type VerifyCodeValue = z.infer<typeof verifyCodeSchema>
+
 
 // Register Schema
 export const registerSchema = z

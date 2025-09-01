@@ -17,7 +17,7 @@ export async function forgetPasswordAction(data: ForgetPasswordValue) {
     );
     const payload: ApiResponse<ForgetPasswordResponse> = await response.json();
     if ("code" in payload) {
-      console.log("failed to send OTP", payload.message);
+      console.log("failed to send to OTP step", payload.message);
       throw new Error(payload.message);
     }
     console.log("Successfully sent OTP", payload.message);
