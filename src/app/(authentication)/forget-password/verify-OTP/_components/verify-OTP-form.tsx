@@ -22,8 +22,11 @@ import { useRouter } from "next/navigation";
 import { LoaderCircle } from "lucide-react";
 import FormErrorMessage from "@/components/shared/form-error-message";
 import CreateAccoutnLink from "@/components/shared/create-account-link";
+import useForgetPassword from "../../_hooks/use-forgetPassword";
+import { toast } from "@/hooks/use-toast";
+import { ForgetPasswordResponse } from "@/lib/types/auth";
 
-export default function VerifyForm() {
+export default function VerifyForm({ email }: { email: string }) {
   const router = useRouter();
   const [timeLeft, setTimeLeft] = useState(60);
   const [showResend, setShowResend] = useState(false);
@@ -39,12 +42,6 @@ export default function VerifyForm() {
     return () => clearInterval(timer);
   }, [timeLeft]);
 
-  const handleResendClick = () => {
-    setTimeLeft(60);
-    setShowResend(false);
-    console.log("Resending code...");
-  };
-
   // Form
   const form = useForm<VerifyCodeValue>({
     defaultValues: {
@@ -56,16 +53,40 @@ export default function VerifyForm() {
 
   //Mutation
   const { isPending, error, verifyOTP } = useVerifyCode();
+  const { forgetPassword } = useForgetPassword();
 
   //Function
   const onSubmit: SubmitHandler<VerifyCodeValue> = (values) => {
     verifyOTP(values, {
       onSuccess: (data: VerifyCodeSuccessResponse) => {
         if (data.status === "Success") {
-          router.push("/forget-password/verify-OTP/new-password");
+          router.push(
+            `/forget-password/verify-OTP/new-password?email=${encodeURIComponent(email)}`,
+          );
         }
       },
     });
+  };
+
+  const handleResendClick = () => {
+    console.log("Resending code to email", email);
+    forgetPassword(
+      { email },
+      {
+        onSuccess: (data: SuccessResponse<ForgetPasswordResponse>) => {
+          if (data.message === "success") {
+            toast({
+              description: data.info,
+              duration: 1000,
+            });
+          }
+          setTimeout(() => {
+            setShowResend(false);
+            setTimeLeft(60);
+          }, 1000);
+        },
+      },
+    );
   };
 
   return (

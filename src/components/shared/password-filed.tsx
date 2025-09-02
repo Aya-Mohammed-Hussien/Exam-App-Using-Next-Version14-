@@ -7,9 +7,9 @@ import { Button } from "../ui/button";
 type PasswordFieldProps = React.ComponentProps<typeof Input> ;
 
 const PasswordField = React.forwardRef<HTMLInputElement , PasswordFieldProps>(
-  ({ className, ...props }, ref) => {
+  ({ className,autoComplete, ...props }, ref) => {
 const [showPassword, setShowPassword] = useState(false);
-  const togglePasswordVisiblity = () => setShowPassword(!showPassword);
+  const togglePasswordVisiblity = () => setShowPassword((prev) => !prev);
 
   return (
     <div className="relative mt-2">
@@ -19,6 +19,7 @@ const [showPassword, setShowPassword] = useState(false);
         className={className}
         type={showPassword ? "text" : "password"}
         placeholder={props.placeholder ?? "********"}
+        autoComplete={autoComplete ?? "off"}
       />
       <Button
         type="button"

@@ -1,8 +1,11 @@
+import { redirect } from "next/navigation";
 import ArrowBack from "./_components/arrow-left";
 import VerifyForm from "./_components/verify-OTP-form";
 
 
 export default function Page({searchParams,}: {searchParams: { email?: string };}) {
+  const userEmail = searchParams.email??"";
+  if (!userEmail) redirect("/forget-password")
   return (
     <section className="w-[28.25rem] pt-72">
       <ArrowBack />
@@ -13,7 +16,7 @@ export default function Page({searchParams,}: {searchParams: { email?: string };
           {searchParams.email ?? "user@example.com."}
         </span>
       </p>
-      <VerifyForm />
+      <VerifyForm email= {userEmail} />
     </section>
   );
 }

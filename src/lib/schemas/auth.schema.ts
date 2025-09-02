@@ -9,20 +9,28 @@ export const loginSchema = z.object({
 });
 export type LoginValues = z.infer<typeof loginSchema>;
 
-
-//ForgetPasswordSchema  
+//ForgetPasswordSchema
 export const forgetPasswordSchema = loginSchema.omit({
-  password: true ,
-})
-export type ForgetPasswordValue = z.infer<typeof forgetPasswordSchema>
-
+  password: true,
+});
+export type ForgetPasswordValue = z.infer<typeof forgetPasswordSchema>;
 
 //Verify OTP
 export const verifyCodeSchema = z.object({
-  resetCode :z.string().length(6 , "OTP must be exactly 6 digits")
-})
-export type VerifyCodeValue = z.infer<typeof verifyCodeSchema>
+  resetCode: z.string().length(6, "OTP must be exactly 6 digits"),
+});
+export type VerifyCodeValue = z.infer<typeof verifyCodeSchema>;
 
+// New Password
+export const newPasswordSchema = z.object({
+  email: z.string().min(1, "Your email is required"),
+  newPassword: passwordSchema.shape.password,
+  rePassword: z.string(),
+}).refine((data) => data.newPassword === data.rePassword, {
+    message: "Passwords do not match",
+    path: ["rePassword"],
+  });
+export type NewPasswordValue = z.infer<typeof newPasswordSchema>
 
 // Register Schema
 export const registerSchema = z
@@ -62,20 +70,21 @@ export const registerSchema = z
 export type RegisterValues = z.infer<typeof registerSchema>;
 
 // Change-password schema
-export const changePasswordSchema = z.object({
-  oldPassword: z.string().min(1, "Password is required"),
-  password: passwordSchema.shape.password,
-  rePassword: z.string(),
-}).refine((data)=> data.password === data.rePassword , {
-  message : "Passwords do not match",
-  path : ["rePassword"]
-})
-export type ChangePasswordValues = z.infer<typeof changePasswordSchema>
-
+export const changePasswordSchema = z
+  .object({
+    oldPassword: z.string().min(1, "Password is required"),
+    password: passwordSchema.shape.password,
+    rePassword: z.string(),
+  })
+  .refine((data) => data.password === data.rePassword, {
+    message: "Passwords do not match",
+    path: ["rePassword"],
+  });
+export type ChangePasswordValues = z.infer<typeof changePasswordSchema>;
 
 // Profile-Data Schema
 export const profileDataSchema = registerSchema.omit({
-  password: true ,
-  rePassword : true,
-})
-export type ProfileDataValues = z.infer<typeof profileDataSchema>
+  password: true,
+  rePassword: true,
+});
+export type ProfileDataValues = z.infer<typeof profileDataSchema>;
