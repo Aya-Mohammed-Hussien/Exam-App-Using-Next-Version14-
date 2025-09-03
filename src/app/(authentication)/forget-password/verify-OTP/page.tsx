@@ -1,11 +1,14 @@
 import { redirect } from "next/navigation";
 import ArrowBack from "./_components/arrow-left";
 import VerifyForm from "./_components/verify-OTP-form";
+import { cookies } from "next/headers";
 
 
-export default function Page({searchParams,}: {searchParams: { email?: string };}) {
+export default function Page({searchParams,}: {searchParams: { email?: string}}) {
   const userEmail = searchParams.email??"";
-  if (!userEmail) redirect("/forget-password")
+  const cookieId = cookies().get("reset-session")?.value;
+  if ( !userEmail || !cookieId) redirect("/forget-password");
+  
   return (
     <section className="w-[28.25rem] pt-72">
       <ArrowBack />

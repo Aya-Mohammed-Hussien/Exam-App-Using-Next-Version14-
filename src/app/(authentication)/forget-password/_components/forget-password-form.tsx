@@ -24,6 +24,7 @@ import FormErrorMessage from "@/components/shared/form-error-message";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import CreateAccoutnLink from "@/components/shared/create-account-link";
+import { resetSessionAction } from "../_actions/reset-session.action";
 
 export default function ForgetPasswordForm() {
   const { toast } = useToast();
@@ -44,8 +45,10 @@ export default function ForgetPasswordForm() {
   //Function
   const onSubmit: SubmitHandler<ForgetPasswordValue> = (values) => {
     forgetPassword(values, {
-      onSuccess: (data: SuccessResponse<ForgetPasswordResponse>) => {
+      onSuccess: async (data: SuccessResponse<ForgetPasswordResponse>) => {
         if (data.message === "success") {
+         const sessionId = crypto.randomUUID();
+         await resetSessionAction(sessionId); 
           toast({
             description: data.info,
             duration: 1500,

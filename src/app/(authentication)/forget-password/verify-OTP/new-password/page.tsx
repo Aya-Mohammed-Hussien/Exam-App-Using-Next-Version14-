@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
 import ArrowBack from "../_components/arrow-left";
 import UpdatePasswordForm from "./_components/new-password-form";
+import { cookies } from "next/headers";
 
 export default function Page({searchParams,}: {searchParams: { email?: string };}) {
   const userEmail = searchParams.email??"";
-  if (!userEmail) redirect("/forget-password")
+   const cookieId = cookies().get("reset-session")?.value;
+   if ( !userEmail || !cookieId) redirect("/forget-password");
   return (
     <section className="pt-72">
        <ArrowBack/>

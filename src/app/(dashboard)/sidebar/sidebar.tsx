@@ -8,7 +8,8 @@ import { authOptions } from "@/auth";
 
 
 export default async function Sidebar() {
- const session = await getServerSession(authOptions)
+ const session = await getServerSession(authOptions);
+ const capitalizedFirstName =session?.firstName && session?.firstName.charAt(0).toUpperCase()+ session?.firstName.slice(1).toLowerCase()
   return (
     /* Sidebar */
     <aside className="flex flex-col bg-blue-50 w-[22.625rem] p-10 gap-[3.75rem] min-h-screen fixed top-0 left-0">
@@ -44,7 +45,7 @@ export default async function Sidebar() {
 
         {/* Username & Email */}
         <div className="flex flex-col">
-          <span className="font-geist text-base font-medium align-middle text-blue-600">{session?.firstName}</span>
+          <span className="font-geist text-base font-medium align-middle text-blue-600">{capitalizedFirstName}</span>
           <span className="font-geist text-sm font-normal align-middle text-gray-500">{session?.user?.email}</span>
         </div>
         
